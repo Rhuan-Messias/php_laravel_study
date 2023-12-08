@@ -1,9 +1,9 @@
-<div>
-<h1>The list of tasks</h1>
-</div>
+@extends('layouts.app')
 
+@section('title','The list of tasks')
+
+@section('content')
 <hr/>
-
 <div>
     <!-- @if(count($tasks)) --> 
     @forelse($tasks as $task)
@@ -18,3 +18,4 @@
     @endforelse
     <!-- @endif -->
 </div>
+@endsection
