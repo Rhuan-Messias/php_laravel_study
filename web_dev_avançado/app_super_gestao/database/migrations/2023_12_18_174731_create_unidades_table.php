@@ -26,7 +26,10 @@ class CreateUnidadesTable extends Migration
         });
 
         //adicionar o relacionamento com a tabela produto_detalhes
-
+            Schema::table('produto_detalhes', function (Blueprint $table) {
+                $table->unsignedBigInteger('unidade_id');
+                $table->foreign('unidade_id')->references('id')->on('unidades');
+            });
     }
 
     /**
@@ -36,6 +39,16 @@ class CreateUnidadesTable extends Migration
      */
     public function down()
     {
+        
+        //remover o relacionamento com a tabela produto_detalhes
+            Schema::table('produto_detalhes', function (Blueprint $table) {
+                //remover a fk
+                $table->dropForeign('produtos_detalhes'); //
+                //remover a coluna unidades_id
+            });
+        //remover o relacionamento com a tabela produtos
+
+        //remover a tabela unidades
         Schema::dropIfExists('unidades');
     }
 }
